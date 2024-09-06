@@ -23,9 +23,9 @@ function App() {
     <div className="body">
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Table" element={<Table_page />} />
-        <Route path="/*" element={<Error />} />
+        <Route path="/SPA_servers/" element={<Home />} />
+        <Route path="/SPA_servers/Table" element={<Table_page />} />
+        <Route path="/SPA_servers/*" element={<Error />} />
       </Routes>
       {
         user.loading || dataTable.loading ? <div style={{
