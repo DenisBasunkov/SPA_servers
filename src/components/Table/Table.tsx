@@ -47,7 +47,7 @@ export const Table: React.FC = ({ }) => {
         const code = new FormData(e.currentTarget).get("code")?.toString()
         if (code === KeyDelete) {
             const timer = setTimeout(() => {
-                dispatch(RemoveData(code?.split("_")[1]))
+                dispatch(RemoveData(code?.split("_")[1] as string))
                 setIsLoading(false)
             }, 2000)
             return () => clearTimeout(timer)

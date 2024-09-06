@@ -1,6 +1,7 @@
 import { AnyAction, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { HOST, IUserdocs } from "../assets/GlobalVariables";
+import { RootState } from "./store";
 
 interface IData {
     list: IUserdocs[],
@@ -24,11 +25,11 @@ const DataSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(FeatchData.pending, (state) => {
+            .addCase(FetchData.pending, (state) => {
                 state.error = null;
                 state.loading = true;
             })
-            .addCase(FeatchData.fulfilled, (state, action: PayloadAction<IUserdocs[]>) => {
+            .addCase(FetchData.fulfilled, (state, action) => {
                 state.list = action.payload
                 state.loading = false
             })
@@ -96,17 +97,17 @@ function IsError(action: AnyAction) {
 export default DataSlice.reducer;
 export const { } = DataSlice.actions;
 
-export const FeatchData = createAsyncThunk<IUserdocs[], undefined, { rejectValue: string, state: { user: { token: string } } }>(
-    "userdocs/FeatchData",
+export const FetchData = createAsyncThunk<IUserdocs[], undefined, { rejectValue: string, state: RootState }>(
+    "userdocs/FetchData",
     async function (_, { rejectWithValue, getState }) {
 
-        const token = getState().user.token
+        const token = getState().user.token;
 
         const { data } = await axios({
             method: "get",
             url: HOST + "/ru/data/v3/testmethods/docs/userdocs/get",
             headers: {
-                "x-auth": token,
+                "x-auth": token as string,
             }
         })
         if (data.error_code !== 0) return rejectWithValue(data.error_message)
@@ -117,7 +118,7 @@ export const FeatchData = createAsyncThunk<IUserdocs[], undefined, { rejectValue
 )
 
 
-export const AddData = createAsyncThunk<IUserdocs, IUserdocs, { rejectValue: string, state: { user: { token: string } } }>(
+export const AddData = createAsyncThunk<IUserdocs, IUserdocs, { rejectValue: string, state: RootState }>(
     "userdocs/AddData",
     async function (ItemUserdocs, { rejectWithValue, getState }) {
 
@@ -127,9 +128,9 @@ export const AddData = createAsyncThunk<IUserdocs, IUserdocs, { rejectValue: str
             method: "post",
             url: HOST + "/ru/data/v3/testmethods/docs/userdocs/create",
             headers: {
-                "x-auth": token,
+                "x-auth": token as string,
             },
-            data: ItemUserdocs
+            data: ItemUserdocs as IUserdocs
         })
         if (data.error_code !== 0) return rejectWithValue(data.error_message)
         console.log(data.data)
@@ -137,7 +138,7 @@ export const AddData = createAsyncThunk<IUserdocs, IUserdocs, { rejectValue: str
     }
 )
 
-export const RemoveData = createAsyncThunk<IUserdocs[], string, { rejectValue: string, state: { user: { token: string }, dataTable: IData } }>(
+export const RemoveData = createAsyncThunk<IUserdocs[], string, { rejectValue: string, state: RootState }>(
     "userdocs/RemoveData",
     async (DataId, { rejectWithValue, getState }) => {
 
@@ -148,7 +149,7 @@ export const RemoveData = createAsyncThunk<IUserdocs[], string, { rejectValue: s
             method: "post",
             url: `${HOST}/ru/data/v3/testmethods/docs/userdocs/delete/${DataId}`,
             headers: {
-                "x-auth": token,
+                "x-auth": token as string,
             },
         });
 
@@ -161,7 +162,7 @@ export const RemoveData = createAsyncThunk<IUserdocs[], string, { rejectValue: s
     }
 )
 
-export const RenameData = createAsyncThunk<IUserdocs[], IUserdocs, { rejectValue: string, state: { user: { token: string }, dataTable: IData } }>(
+export const RenameData = createAsyncThunk<IUserdocs[], IUserdocs, { rejectValue: string, state: RootState }>(
     "userdocs/RenameData",
     async (newData, { rejectWithValue, getState }) => {
 
@@ -172,9 +173,9 @@ export const RenameData = createAsyncThunk<IUserdocs[], IUserdocs, { rejectValue
             method: "post",
             url: `${HOST}/ru/data/v3/testmethods/docs/userdocs/set/${newData.id}`,
             headers: {
-                "x-auth": token,
+                "x-auth": token as string,
             },
-            data: newData
+            data: newData as IUserdocs
         });
         if (data.error_code !== 0) return rejectWithValue(data.error_message);
         return datas.map((item) => {
@@ -186,7 +187,7 @@ export const RenameData = createAsyncThunk<IUserdocs[], IUserdocs, { rejectValue
 )
 
 
-export const CopyData = createAsyncThunk<IUserdocs, IUserdocs, { rejectValue: string, state: { user: { token: string }, dataTable: IData } }>(
+export const CopyData = createAsyncThunk<IUserdocs, IUserdocs, { rejectValue: string, state: RootState }>(
     "userdocs/CopyData",
     async (newData, { rejectWithValue, getState }) => {
 
@@ -204,7 +205,7 @@ export const CopyData = createAsyncThunk<IUserdocs, IUserdocs, { rejectValue: st
             method: "post",
             url: `${HOST}/ru/data/v3/testmethods/docs/userdocs/create`,
             headers: {
-                "x-auth": token,
+                "x-auth": token as string,
             },
             data: object
         });
@@ -215,7 +216,7 @@ export const CopyData = createAsyncThunk<IUserdocs, IUserdocs, { rejectValue: st
 )
 
 
-export const RemoveAll = createAsyncThunk<IUserdocs[], string[], { rejectValue: string, state: { user: { token: string }, dataTable: IData } }>(
+export const RemoveAll = createAsyncThunk<IUserdocs[], (string | unknown)[], { rejectValue: string, state: RootState }>(
     "userdocs/RemoveAll",
     async (DataId, { rejectWithValue, getState }) => {
 
@@ -229,7 +230,7 @@ export const RemoveAll = createAsyncThunk<IUserdocs[], string[], { rejectValue: 
                     method: "post",
                     url: `${HOST}/ru/data/v3/testmethods/docs/userdocs/delete/${item}`,
                     headers: {
-                        "x-auth": token,
+                        "x-auth": token as string,
                     },
                 });
 

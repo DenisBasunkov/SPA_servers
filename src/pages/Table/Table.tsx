@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../assets/hooks"
-import { FeatchData } from "../../store/DataSlise"
+import { FetchData } from "../../store/DataSlise"
 import { Table } from "../../components/Table/Table"
 import { useNavigate } from "react-router-dom"
 
@@ -13,8 +13,10 @@ const Table_page = () => {
     const { token } = useAppSelector(state => state.user)
 
     useEffect(() => {
-        dispatch(FeatchData())
-    }, [token !== ''])
+        if (token !== '') {
+            dispatch(FetchData())
+        }
+    }, [token])
 
     useEffect(() => {
         if (token == '') {
