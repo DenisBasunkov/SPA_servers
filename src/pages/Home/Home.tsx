@@ -12,7 +12,7 @@ const Home = () => {
 
     useEffect(() => {
         if (token !== "") {
-            navigation("/Table")
+            navigation("/SPA_servers/Table")
         }
     }, [token])
 

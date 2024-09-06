@@ -33,7 +33,7 @@ const Profile: React.FC<IProfileProps> = ({ }) => {
 
     const Rename = () => {
         dipatch(RenameToken())
-        navigate("/")
+        navigate("/SPA_servers/")
     }
 
     return <div className={styles.nav_User}>

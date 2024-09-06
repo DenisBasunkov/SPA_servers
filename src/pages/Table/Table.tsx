@@ -20,7 +20,7 @@ const Table_page = () => {
 
     useEffect(() => {
         if (token == '') {
-            navigation('/')
+            navigation('/SPA_servers/')
         }
     }, [])
 
