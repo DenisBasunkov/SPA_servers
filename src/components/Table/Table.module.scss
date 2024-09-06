@@ -1,0 +1,86 @@
+.Table_container {
+
+    width: 95%;
+    margin: 25px auto;
+    position: relative;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 14px;
+    border: none;
+}
+
+thead th {
+    background-color: rgba(0, 88, 88, .6);
+    font-weight: 500;
+    color: white;
+    // border: 1px solid rgba(0, 0, 0, 0.1);
+    // border: none;
+    word-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px;
+    text-align: center;
+    cursor: default;
+}
+
+tbody tr {
+    transition: all .5s;
+    position: relative;
+
+
+    &:nth-child(odd) {
+        background-color: rgba(0, 88, 88, .1);
+    }
+
+    &:hover {
+        background-color: rgba(1, 81, 81, 0.4);
+    }
+}
+
+.Cell {
+    // border: 1px solid rgba(128, 128, 128, 0.379);
+    overflow-wrap: break-word;
+    padding: 5px;
+    text-align: center;
+
+}
+
+.Row_Nav {
+
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    &>button {
+        border: none;
+        padding: 2.5px 8px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px 0 hsla(0, 0%, 0%, .4);
+        transition: all .5s;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 1px 1px 5px 0 hsla(0, 0%, 0%, .7);
+        }
+
+        &:active {
+            box-shadow: 1px 1px 5px 0 hsla(0, 0%, 0%, .4) inset;
+        }
+
+    }
+
+}
+
+.Form_Delete {
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    & code {
+        font-weight: 900;
+        color: rgb(9, 135, 0);
+    }
+
+}

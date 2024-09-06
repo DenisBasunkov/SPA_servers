@@ -1,0 +1,59 @@
+.Header_container {
+
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 25px;
+    background-color: rgb(0, 88, 88);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+
+
+}
+
+.Link_btn {
+
+
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+        transition: ease-in-out .5s;
+        opacity: .5;
+    }
+
+}
+
+.active {
+    position: relative;
+    transition: all .5s;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        border-radius: 0 0 50px 50px;
+        background-color: burlywood;
+    }
+}
+
+.nav_User {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+
+    &>h3 {
+        color: white;
+        font-size: 15px;
+    }
+
+}

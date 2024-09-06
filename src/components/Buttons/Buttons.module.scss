@@ -1,0 +1,51 @@
+.Button_container {
+    width: fit-content;
+    border: 1px solid hsla(0, 0%, 0%, .2);
+    background-color: white;
+    border-radius: 15px;
+    padding: 2.5px 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px 0px hsla(0, 0%, 0%, 0.2);
+    transition: all .5s;
+    color: black;
+
+    &:hover:enabled {
+        opacity: .8;
+    }
+
+    &:disabled {
+        opacity: .7;
+        pointer-events: none
+    }
+
+}
+
+.Button_red {
+    background-color: rgb(181, 0, 0);
+    color: white;
+    border: none;
+}
+
+.Button_blue {
+    background-color: blue;
+    color: white;
+    border: none;
+}
+
+.Button_green {
+    background-color: green;
+    color: white;
+    border: none;
+}
+
+.Button_orange {
+    background-color: orange;
+    color: white;
+    border: none;
+}
+
+.Button_yellow {
+    background-color: yellow;
+    color: white;
+    border: none;
+}

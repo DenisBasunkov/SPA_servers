@@ -1,0 +1,71 @@
+.Message {
+    position: absolute;
+    transition: all .5s;
+    z-index: 100;
+    padding: 5px 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 hsla(0, 0%, 0%, .4);
+    transform: translateX(-400px);
+}
+
+.Message_position_top_left {
+    top: 5px;
+    left: 5px;
+}
+
+.Message_position_top_rigth {
+    top: 5px;
+    right: 5px;
+}
+
+.Message_position_bottom_left {
+    bottom: 5px;
+    left: 5px;
+}
+
+.Message_position_bottom_rigth {
+    bottom: 5px;
+    right: 5px;
+}
+
+.Message_type_error {
+    background-color: rgb(223, 45, 0);
+    color: aliceblue;
+}
+
+.Message_type_warning {
+    background-color: rgb(223, 123, 0);
+    color: aliceblue;
+}
+
+.Message_type_sucess {
+    background-color: rgb(29, 104, 0);
+    color: aliceblue;
+}
+
+.Message_type_info {
+    background-color: rgb(249, 249, 249);
+}
+
+.open {
+    animation-name: openMessege;
+    animation-duration: 5s;
+}
+
+@keyframes openMessege {
+    0% {
+        transform: translateX(-400px);
+    }
+
+    5% {
+        transform: translateX(0px);
+    }
+
+    95% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(-400px);
+    }
+}
